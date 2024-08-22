@@ -23,7 +23,7 @@ def combine_find(df,sum):
     backtrack(0, 0, [])
     return result
 
-def combination_result(df,sum):
+def main_combination_result(df,sum):
     try:
         combinations = combine_find(df,sum)
         df_new = []
@@ -38,4 +38,3 @@ def combination_result(df,sum):
             raise ValueError("No combinations match the target sum.")
     except ValueError as ve:
         logging.info(f"No combinations found that sum to {sum}.")
-
