@@ -15,7 +15,7 @@ def combine_find(df,sum):
                 return        
             for i in range(start, len(df)):
                 current_indices.append(df[column_index][i])
-                backtrack(i + 1, current_sum + df[column_sum][i], current_indices)
+                backtrack(i + 1, current_sum + df[column_sum][i], current_indices,column_index, column_sum)
                 current_indices.pop()
         except Exception as e:
             logging.error(f"Error occurred: {e}")
@@ -38,3 +38,4 @@ def combination_result(df,sum):
             raise ValueError("No combinations match the target sum.")
     except ValueError as ve:
         logging.info(f"No combinations found that sum to {sum}.")
+
