@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\admin\Desktop\New folder (2)\automate
+set VIRTUAL_ENV=C:\Users\Huy.PhamN1\Two_Sum\automate
 
 if not defined PROMPT set PROMPT=$P$G
 
