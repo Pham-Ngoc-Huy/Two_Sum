@@ -1,0 +1,1 @@
+query = 'Select * from database when ____'
