@@ -6,12 +6,17 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def combine_find(df, target_sum, column_index, column_sum):
     result = []
-    
+    found = [False]
+
     def backtrack(start, current_sum, current_indices):
         try:
+            if found[0]:
+                return
+            
             if current_sum == target_sum:
                 result.append(current_indices[:])
                 logging.info(f"Found combination: {current_indices}")
+                found[0] = True
                 return
 
             if current_sum > target_sum:
@@ -21,7 +26,7 @@ def combine_find(df, target_sum, column_index, column_sum):
                 current_indices.append(df[column_index][i])
                 backtrack(i + 1, current_sum + df[column_sum][i], current_indices)
                 current_indices.pop()
-                if current_sum == target_sum:
+                if found[0]:
                     break
         except Exception as e:
             logging.error(f"Error occurred: {e}")
@@ -29,10 +34,10 @@ def combine_find(df, target_sum, column_index, column_sum):
     backtrack(0, 0, [])
     return result
 
-def main_combination_result(df, target_sum):
+def main_combination_result(df, target_sum, column_index, column_sum):
     try:
-        column_index = 'index'
-        column_sum = 'amount'
+        # column_index = 'index'
+        # column_sum = 'amount'
         combinations = combine_find(df, target_sum, column_index, column_sum)
         df_new = []
         if combinations:
@@ -54,7 +59,9 @@ def main():
     }
     df = pd.DataFrame(data)
     target_sum = 23
-    result_df = main_combination_result(df, target_sum)
+    column_index = 'index'
+    column_sum = 'amount'
+    result_df = main_combination_result(df, target_sum, column_index, column_sum)
     logging.info(f"Done Finding Combination Sum")
     print(result_df)
 
